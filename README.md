@@ -1,6 +1,6 @@
 <h1>Disaster Response Pipeline Project</h1>
 
-<h2>Table of Contents</h2>
+Table of Contents
 - [Project Overview](#project-overview)
 - [File Description](#file-description)
 - [Instructions](#instructions)
@@ -12,11 +12,10 @@ In this project, we'll have a data set containing real messages that were sent d
 The project also includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also display visualizations of the data.
 
 Expect final results are as below:
-![User input](images/disaster-response-project1.png = 250x250)
-![Categorized results](images/disaster-response-project2.png = 250x250)
+![User input](images/disaster-response-project1.png)
+![Categorized results](images/disaster-response-project2.png )
 
 # File Description
-
 Our workspace is organized as below:
   - **app folder**: include html template and flask python file to run the app
     - template
