@@ -3,6 +3,8 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
+    '''
+    '''
     # Load raw data
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
@@ -29,6 +31,17 @@ def clean_data(df):
     df = df.drop('categories', axis=1)
     df = pd.concat([df, categories], axis=1)
 
+    #  Get the list of category columns with more than 2 values or only 1 value
+    unique_df = pd.DataFrame([categories.nunique().index, categories.nunique().values]).T
+    unique_df.columns = ['column', 'nunique']
+    abnormal_columns = unique_df.loc[unique_df['nunique']>2, 'column'].tolist()
+    single_value_columns = unique_df.loc[unique_df['nunique']==1, 'column'].tolist()
+
+    # Drop rows/cols that have issues
+    for col in abnormal_columns:
+        df = df[df[col]!=2]
+    df = df.drop(single_value_columns, axis=1)    
+
     # Drop duplicates
     df = df.drop_duplicates()
 
@@ -36,10 +49,7 @@ def clean_data(df):
 
 def save_data(df, database_filepath):
     engine = create_engine(f'sqlite:///{database_filepath}')
-    try:
-        df.to_sql('disaster_responses', engine, index=False)
-    except ValueError as err:
-        print("Table 'disaster_responses' already exists")
+    df.to_sql('disaster_responses', engine, index=False, if_exists='replace')
 
 def main():
     if len(sys.argv) == 4:
