@@ -1,21 +1,21 @@
-**Disaster Response Pipeline Project**
+<h1>Disaster Response Pipeline Project</h1>
 
-**Table of Contents**
+<h2>Table of Contents</h2>
 - [Project Overview](#project-overview)
 - [File Description](#file-description)
 - [Instructions](#instructions)
 - [Results](#results)
 
-# Project Overview
+## Project Overview
 In this project, we'll have a data set containing real messages that were sent during disaster events. I will be creating a machine learning pipeline to categorize these events so that user can send the messages to an appropriate disaster relief agency.
 
 The project also includes a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also display visualizations of the data.
 
 Expect final results are as below:
-[User input](images/disaster-response-project1.png)
-[Categorized results](images/disaster-response-project2.png)
+![User input](images/disaster-response-project1.png)
+![Categorized results](images/disaster-response-project2.png)
 
-# File Description
+## File Description
 
 Our workspace is organized as below:
 - app
@@ -41,7 +41,7 @@ Our workspace is organized as below:
 - requirements.txt # Python libs used in this project
 - README.md
 
-# Instructions
+## Instructions
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
@@ -55,7 +55,7 @@ Our workspace is organized as below:
 
 4. Open web browser and enter: `http://localhost:3000/` to access the app
 
-# Results
+## Results
 
 | Metrics              | Results |
 |----------------------|---------|
@@ -64,5 +64,5 @@ Our workspace is organized as below:
 | Precision of class 1 | 94.36%  |
 | Recall of class 0    | 98.45%  |
 | Recall of class 1    | 60.35%  |
-| F1 of value 0        | 97.66%  |
-| F1 of value 1        | 71.73%  |
+| F1 of class 0        | 97.66%  |
+| F1 of class 1        | 71.73%  |
