@@ -1,6 +1,6 @@
 <h1>Disaster Response Pipeline Project</h1>
 
-<h1>Table of Contents</h1>
+**Table of Contents**
 - [Project Overview](#project-overview)
 - [File Description](#file-description)
 - [Instructions](#instructions)
