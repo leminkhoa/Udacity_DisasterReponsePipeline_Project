@@ -1,10 +1,8 @@
-# Disaster Response Pipeline Project
+**Disaster Response Pipeline Project**
 
-# Table of Contents
-- [Disaster Response Pipeline Project](#disaster-response-pipeline-project)
-- [Table of Contents](#table-of-contents)
+**Table of Contents**
 - [Project Overview](#project-overview)
-- [File Descriptions](#file-descriptions)
+- [File Description](#file-description)
 - [Instructions](#instructions)
 - [Results](#results)
 
@@ -17,7 +15,7 @@ Expect final results are as below:
 [User input](images/disaster-response-project1.png)
 [Categorized results](images/disaster-response-project2.png)
 
-# File Descriptions
+# File Description
 
 Our workspace is organized as below:
 - app
