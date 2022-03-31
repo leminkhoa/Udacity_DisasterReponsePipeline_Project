@@ -1,6 +1,4 @@
 import nltk
-nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger'])
-
 import re
 import pandas as pd
 from nltk.tokenize import word_tokenize

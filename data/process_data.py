@@ -3,8 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
-    '''
-    '''
+    """Load message and categories dataset"""
     # Load raw data
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
@@ -13,6 +12,7 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 def clean_data(df):
+    """Process and clean raw dataframe. Return a cleaned dataframe."""
     # Create a dataframe of individual category columns
     categories = df['categories'].str.split(';', expand=True)
     row = categories.iloc[0, :]
@@ -48,6 +48,12 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filepath):
+    """Store df and sqlite database
+
+    Keyword arguments:
+        df -- cleaned pandas dataframe, which is ready for training
+        database_filepath (str) --  File path of sqlite database.
+    """
     engine = create_engine(f'sqlite:///{database_filepath}')
     df.to_sql('disaster_responses', engine, index=False, if_exists='replace')
 

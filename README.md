@@ -53,6 +53,7 @@ Our workspace is organized as below:
 
 # Results
 
+Our best results so far using the algorithm: XGBoost
 | Metrics              | Results |
 |----------------------|---------|
 | Accuracy             | 97.07%  |

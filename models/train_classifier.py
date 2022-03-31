@@ -16,6 +16,7 @@ nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('stopwords')
 nltk.download('omw-1.4')
+nltk.download('averaged_perceptron_tagger')
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -30,6 +31,7 @@ from sklearn.metrics import classification_report
 from custom_transformer import StartingVerbExtractor
 
 def load_data(database_filepath):
+    """Load dataframe from database, then return X, y and list of categories used for training model."""
     # read in file
     engine = create_engine(f'sqlite:///{database_filepath}')
     df = pd.read_sql_table('disaster_responses', con=engine)
@@ -44,6 +46,8 @@ def load_data(database_filepath):
     return X, y, category_names
 
 def tokenize(text):
+    """Tokenize function used to clean text with stopword removal, 
+    lemmatizing and then convert raw string into a list of processed text"""
     # text normalization
     text = text.lower()
     text = re.sub('[^a-zA-Z0-9]', ' ', text)
@@ -68,6 +72,7 @@ def tokenize(text):
 
 
 def build_model():
+    """Return a defined pipeline with gridsearch used to train model"""
     # Add starting verb feature 
     pipeline = Pipeline([
                         ('features', FeatureUnion ([
@@ -96,6 +101,16 @@ def build_model():
     return model
 
 def metrics_evaluation(y_true, y_pred):
+    """Evaluate results based on y true and y predicted
+    
+    Keyword arguments:
+        y_true (pandas DataFrame): y from test set
+        y_pred (pandas DataFrame): y resulted from our model prediction.
+
+    Return:
+        report_df (Pandas dataframe): dataframe contains evaluation results (f1-score, precision, recall, accuracy) of each category
+        metrics_mean (named tuple): average results of the whole model.
+    """
     test_results = []
     report_cols = ['column', 'precision_0', 'precision_1', 'recall_0', 'recall_1',
                    'f1_score_0', 'f1_score_1', 'accuracy']
@@ -154,6 +169,7 @@ def metrics_evaluation(y_true, y_pred):
     return report_df, metrics_mean
 
 def evaluate_model(model, X_test, y_test, category_names):
+    """Step to evaluate and print results of fitted model"""
     print("    Model best params: ", model.best_params_)
 
     # Predict
@@ -191,6 +207,12 @@ def evaluate_model(model, X_test, y_test, category_names):
     print('- F1 of value 1: {:.2%}'.format(metrics_mean[5]))
 
 def save_model(model, model_filepath):
+    """Save fitted model to pickle file
+    
+    Keyword arguments:
+        model: fitted model
+        model_filepath (str): path to save model
+    """
     with open(model_filepath, 'wb') as f:
         pickle.dump(model, f)
 
